@@ -11,7 +11,7 @@ namespace Buku.MVC.Services
 {
     internal class AuthorRESTService
     {
-        readonly static string baseUri = "http://localhost:58982/api/Authors/";
+        readonly static string baseUri = "http://book-api.api.local/api/Authors/";
 
         // GET : Index
         public List<AuthorViewModel> GetAuthors()

@@ -13,7 +13,7 @@ namespace Buku.MVC.Services
 {
     internal class BookRESTService
     {
-        readonly static string baseUri = "http://localhost:58982/api/Books/";
+        readonly static string baseUri = "http://book-api.api.local/api/Books/";
 
         // GET:/Books
         public List<BookViewModel> GetBooks()
@@ -37,7 +37,7 @@ namespace Buku.MVC.Services
         [HttpPost]
         public BookViewModel CreateBook(BookViewModel book)
         {
-            string uri = "http://localhost:58982/api/Book/Create";
+            string uri = "http://book-api.api.local/api/Book/Create";
             HttpClient client = new HttpClient();
             var result = client.PostAsync(uri, book, new JsonMediaTypeFormatter()).Result;
             string content = result.Content.ReadAsStringAsync().Result;

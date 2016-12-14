@@ -8,7 +8,7 @@ namespace Buku.MVC.Controllers
 {
     internal class StudentRESTService
     {
-        private static string baseUri = "http://localhost:58982/api/Students/";
+        private static string baseUri = "http://book-api.api.local/api/Students/";
 
         public List<AuthorViewModel> GetStudents()
         {

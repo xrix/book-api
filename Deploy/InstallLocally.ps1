@@ -18,6 +18,31 @@ $rootFolder = Split-Path -Path $deployFolder -Parent
 #finally copy the config files
 #Copy-Item $configFiles $rootFolder -Recurse -Container -Force
 
+# install website (Angular)
+Write-Host "------------------------------------------------------------------------------------------------"
+Write-Host "Buku MVC installation"
+Write-Host "------------------------------------------------------------------------------------------------"
+
+$WebFullName = "book.MVC"
+$WebAppPool = "book.MVC.AppPool"
+$WebBinding = "book.MVC.local"
+$WebPhysicalPath = Join-Path $rootFolder "Buku.MVC"
+
+
+Write-Host "WebFullName" = $WebFullName
+Write-Host "WebAppPool" = $WebAppPool
+Write-Host "WebBinding" = $WebBinding
+Write-Host "WebPhysicalPath" = $WebPhysicalPath
+
+#create application pool and website
+Stop-ApplicationPool -applicationPoolName $WebAppPool
+Create-ApplicationPool -applicationPoolName $WebAppPool -identityType "LocalService"
+Create-Website -websiteName $WebFullName -physicalPath $WebPhysicalPath -applicationPoolName $WebAppPool -websiteBinding $WebBinding -anonymousAuthentication   
+Start-ApplicationPool -applicationPoolName $WebAppPool
+#add hosts file entries
+Write-Host "Add records in hosts file" 
+Add-Host-Record  $WebBinding "127.0.0.1"
+
 
 # install website
 Write-Host "------------------------------------------------------------------------------------------------"
